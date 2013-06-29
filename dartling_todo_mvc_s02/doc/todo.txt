@@ -1,0 +1,7 @@
+To Do
+
+- test model
+
+- remove an existing todo
+- complete all tasks
+- clear completed tasks

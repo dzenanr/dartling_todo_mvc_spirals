@@ -1,0 +1,7 @@
+To Do
+
+- title length validation
+
+- test model
+
+- error display

@@ -1,0 +1,9 @@
+Done
+
++ compare to title
++ title length validation
+
++ test model
+
++ error display
+

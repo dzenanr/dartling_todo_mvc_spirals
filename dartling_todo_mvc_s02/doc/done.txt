@@ -1,0 +1,12 @@
+Done
+
++ test model
+
++ load todos from the local storage
++ display a list of todos
++ add a new todo
++ complete an existing todo
++ save todos to the local storage
++ show how many todos are left to do
++ display basic info about the app
+

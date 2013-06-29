@@ -1,0 +1,9 @@
+Done
+
++ design model in Model Concepts
++ generate json and paste it in model.json
++ generate code
++ init model
++ validate model with default app
++ test model
+
