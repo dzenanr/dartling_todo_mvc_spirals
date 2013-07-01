@@ -139,35 +139,6 @@ body {
   border-bottom: none;
 }
 
-#todo-list li .completed {
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  border: none; /* Mobile Safari */
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-#todo-list li .completed:after {
-  font-size: 18px;
-  content: '✔';
-  line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-  font-size: 20px;
-  color: #d9d9d9;
-  text-shadow: 0 -1px 0 #bfbfbf;
-}
-
-#todo-list li .completed:checked:after {
-  color: #85ada7;
-  text-shadow: 0 1px 0 #669991;
-  bottom: 1px;
-  position: relative;
-}
-
 #todo-list li label {
   word-break: break-word;
   padding: 15px;
@@ -176,11 +147,6 @@ body {
   line-height: 1.2;
   -webkit-transition: color 0.4s;
   transition: color 0.4s;
-}
-
-#todo-list li.completed label {
-  color: #a9a9a9;
-  text-decoration: line-through;
 }
 
 #footer {
@@ -208,29 +174,6 @@ body {
         0 7px 1px -3px rgba(0, 0, 0, 0.3),
         0 43px 0 -6px rgba(255, 255, 255, 0.8),
         0 44px 2px -6px rgba(0, 0, 0, 0.2);
-}
-
-#left-count {
-  float: left;
-  text-align: left;
-}
-
-.todo-button {
-  float: right;
-  position: relative;
-  line-height: 20px;
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.1);
-  font-size: 12px;
-  margin-left: 4px;
-  padding: 0 10px;
-  border-radius: 3px;
-  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
-}
-
-.todo-button:hover {
-  background: rgba(0, 0, 0, 0.15);
-  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
 }
 
 #info {
