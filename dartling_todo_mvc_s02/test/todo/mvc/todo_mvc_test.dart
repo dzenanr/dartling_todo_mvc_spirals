@@ -7,16 +7,13 @@ import "package:dartling/dartling.dart";
 import "package:dartling_todo_mvc/dartling_todo_mvc.dart";
 
 testTodoMvc(Repo repo, String domainCode, String modelCode) {
-  TodoModels models;
-  DomainSession session;
   MvcEntries entries;
   Tasks tasks;
   int length = 0;
   Concept concept;
   group("Testing ${domainCode}.${modelCode}", () {
     setUp(() {
-      models = repo.getDomainModels(domainCode);
-      session = models.newSession();
+      var models = repo.getDomainModels(domainCode);
       entries = models.getModelEntries(modelCode);
       expect(entries, isNotNull);
       tasks = entries.tasks;

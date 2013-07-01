@@ -16,12 +16,10 @@ class Todo {
   Element create() {
     _todo = new Element.html('''
       <li ${_task.completed ? 'class="completed"' : ''}>
-        <div class='view'>
-          <input class='completed' type='checkbox'
-            ${_task.completed ? 'checked' : ''}>
-          <label id='title'>${_task.title}</label>
-          <button class='remove'></button>
-        </div>
+        <input class='completed' type='checkbox'
+          ${_task.completed ? 'checked' : ''}>
+        <label id='title'>${_task.title}</label>
+        <button class='remove'></button>
       </li>
     ''');
 

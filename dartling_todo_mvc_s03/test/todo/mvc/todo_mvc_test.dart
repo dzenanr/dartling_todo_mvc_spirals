@@ -7,7 +7,6 @@ import "package:dartling/dartling.dart";
 import "package:dartling_todo_mvc/dartling_todo_mvc.dart";
 
 testTodoMvc(Repo repo, String domainCode, String modelCode) {
-  TodoModels models;
   DomainSession session;
   MvcEntries entries;
   Tasks tasks;
@@ -15,7 +14,7 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
   Concept concept;
   group("Testing ${domainCode}.${modelCode}", () {
     setUp(() {
-      models = repo.getDomainModels(domainCode);
+      var models = repo.getDomainModels(domainCode);
       session = models.newSession();
       entries = models.getModelEntries(modelCode);
       expect(entries, isNotNull);
@@ -289,44 +288,7 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       tasks.display(title:'Transaction Redone');
     });
 
-    test('Reactions to Task Actions', () {
-      var reaction = new Reaction();
-      expect(reaction, isNotNull);
-
-      models.startActionReaction(reaction);
-      var task = new Task(concept);
-      task.title = 'validate dartling documentation';
-
-      var session = models.newSession();
-      var addAction = new AddAction(session, tasks, task);
-      addAction.doit();
-      expect(tasks.length, equals(++length));
-      expect(reaction.reactedOnAdd, isTrue);
-
-      var title = 'documenting dartling';
-      var setAttributeAction =
-          new SetAttributeAction(session, task, 'title', title);
-      setAttributeAction.doit();
-      expect(reaction.reactedOnUpdate, isTrue);
-      models.cancelActionReaction(reaction);
-    });
-
   });
-}
-
-class Reaction implements ActionReactionApi {
-
-  bool reactedOnAdd = false;
-  bool reactedOnUpdate = false;
-
-  react(BasicAction action) {
-    if (action is EntitiesAction) {
-      reactedOnAdd = true;
-    } else if (action is EntityAction) {
-      reactedOnUpdate = true;
-    }
-  }
-
 }
 
 testTodoData(TodoRepo todoRepo) {

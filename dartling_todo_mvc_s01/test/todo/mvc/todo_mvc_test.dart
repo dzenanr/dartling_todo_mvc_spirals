@@ -77,6 +77,26 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       tasks.errors.display(title:'Add Task Required Title Error');
     });
 
+    test('Find Task by New Oid', () {
+      var oid = new Oid.ts(1345648254063);
+      var task = tasks.singleWhereOid(oid);
+      expect(task, isNull);
+    });
+    test('Find Task by Attribute', () {
+      var title = 'generate json from the model';
+      var task = tasks.firstWhereAttribute('title', title);
+      expect(task, isNotNull);
+      expect(task.title, equals(title));
+    });
+    test('Random Task', () {
+      var task1 = tasks.random();
+      expect(task1, isNotNull);
+      task1.display(prefix:'random 1');
+      var task2 = tasks.random();
+      expect(task2, isNotNull);
+      task2.display(prefix:'random 2');
+    });
+
   });
 }
 

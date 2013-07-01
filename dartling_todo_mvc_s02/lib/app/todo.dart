@@ -3,24 +3,20 @@ part of todo_mvc_app;
 class Todo {
   DomainSession _session;
   Task _task;
-  Tasks _tasks;
 
   Element _todo;
   InputElement _completed;
 
   Todo(TodoApp todoApp, this._task) {
     _session = todoApp.session;
-    _tasks = todoApp.tasks;
   }
 
   Element create() {
     _todo = new Element.html('''
       <li ${_task.completed ? 'class="completed"' : ''}>
-        <div class='view'>
-          <input class='completed' type='checkbox'
-            ${_task.completed ? 'checked' : ''}>
-          <label id='title'>${_task.title}</label>
-        </div>
+        <input class='completed' type='checkbox'
+          ${_task.completed ? 'checked' : ''}>
+        <label id='title'>${_task.title}</label>
       </li>
     ''');
 

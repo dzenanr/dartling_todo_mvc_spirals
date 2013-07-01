@@ -1,0 +1,12 @@
+name: dartling_todo_mvc
+version: 0.0.1
+author: Dzenan Ridjanovic <dzenanr@gmail.com>
+description: "Todo.Mvc done with dartling. \nBased on TodoMVC in Dart. \ndartling\
+  \ is a domain model framework."
+homepage: http://ondart.me/
+dependencies:
+  browser: any
+  dartling:
+    git: git://github.com/dzenanr/dartling.git
+  dartling_default_app:
+    git: git://github.com/dzenanr/dartling_default_app.git

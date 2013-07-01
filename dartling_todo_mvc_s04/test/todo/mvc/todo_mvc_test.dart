@@ -311,40 +311,6 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       models.cancelActionReaction(reaction);
     });
 
-    test('Copy Tasks', () {
-      Tasks copiedTasks = tasks.copy();
-      expect(copiedTasks.isEmpty, isFalse);
-      expect(copiedTasks.length, equals(tasks.length));
-      expect(copiedTasks, isNot(same(tasks)));
-      expect(copiedTasks, equals(tasks));
-      copiedTasks.forEach((ct) =>
-          expect(ct, equals(tasks.singleWhereOid(ct.oid))));
-      copiedTasks.forEach((ct) =>
-          expect(ct, isNot(same(tasks.firstWhereAttribute('title', ct.title)))));
-      copiedTasks.display(title:'Copied Tasks');
-    });
-    test('Copy Equality', () {
-      var task = new Task(concept);
-      expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
-      tasks.add(task);
-      expect(tasks.length, equals(++length));
-
-      task.display(prefix:'before copy: ');
-      var copiedTask = task.copy();
-      copiedTask.display(prefix:'after copy: ');
-      expect(task, isNot(same(copiedTask)));
-      expect(task, equals(copiedTask));
-      expect(task.oid, equals(copiedTask.oid));
-      expect(task.code, equals(copiedTask.code));
-      expect(task.title, equals(copiedTask.title));
-      expect(task.completed, equals(copiedTask.completed));
-    });
-    test('True for Every Task', () {
-      expect(tasks.every((t) => t.code == null), isTrue);
-      expect(tasks.every((t) => t.title != null), isTrue);
-    });
-
   });
 }
 
