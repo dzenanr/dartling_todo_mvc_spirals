@@ -4,4 +4,5 @@ To Do
 
 - test model
 
+- sublist of todo tasks (all, left, completed)
 - error display
