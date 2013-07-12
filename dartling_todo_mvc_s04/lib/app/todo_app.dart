@@ -1,8 +1,7 @@
 part of todo_mvc_app;
 
 class TodoApp implements ActionReactionApi, PastReactionApi {
-  DomainSession session;
-  Tasks tasks;
+  Tasks _tasks;
 
   Todos _todos;
   Element _undo = query('#undo');
@@ -14,18 +13,18 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
   Element _clearCompleted = query('#clear-completed');
 
   TodoApp(TodoModels domain) {
-    session = domain.newSession();
+    DomainSession session = domain.newSession();
     domain.startActionReaction(this);
     session.past.startPastReaction(this);
     MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
-    tasks = model.getEntry('Task');
+    _tasks = model.getEntry('Task');
 
-    _todos = new Todos(this);
+    _todos = new Todos(session, _tasks);
     //load todos
     String json = window.localStorage['todos'];
     if (json != null) {
-      tasks.fromJson(parse(json));
-      for (Task task in tasks) {
+      _tasks.fromJson(parse(json));
+      for (Task task in _tasks) {
         _todos.add(task);
       }
       _updateFooter();
@@ -46,23 +45,23 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
       if (e.keyCode == KeyCode.ENTER) {
         var title = newTodo.value.trim();
         if (title != '') {
-          var task = new Task(tasks.concept);
+          var task = new Task(_tasks.concept);
           task.title = title;
           newTodo.value = '';
-          new AddAction(session, tasks, task).doit();
+          new AddAction(session, _tasks, task).doit();
         }
       }
     });
 
     _completeAll.onClick.listen((Event e) {
       var transaction = new Transaction('complete-all', session);
-      if (tasks.left.length == 0) {
-        for (Task task in tasks) {
+      if (_tasks.left.length == 0) {
+        for (Task task in _tasks) {
           transaction.add(
               new SetAttributeAction(session, task, 'completed', false));
         }
       } else {
-        for (Task task in tasks.left) {
+        for (Task task in _tasks.left) {
           transaction.add(
               new SetAttributeAction(session, task, 'completed', true));
         }
@@ -72,34 +71,34 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
 
     _clearCompleted.onClick.listen((MouseEvent e) {
       var transaction = new Transaction('clear-completed', session);
-      for (Task task in tasks.completed) {
+      for (Task task in _tasks.completed) {
         transaction.add(
-            new RemoveAction(session, tasks.completed, task));
+            new RemoveAction(session, _tasks.completed, task));
       }
       transaction.doit();
     });
   }
 
   _save() {
-    window.localStorage['todos'] = stringify(tasks.toJson());
+    window.localStorage['todos'] = stringify(_tasks.toJson());
   }
 
   _updateFooter() {
-    var display = tasks.length == 0 ? 'none' : 'block';
+    var display = _tasks.length == 0 ? 'none' : 'block';
     _completeAll.style.display = display;
     _main.style.display = display;
     _footer.style.display = display;
     // update counts
-    var completedLength = tasks.completed.length;
-    var leftLength = tasks.left.length;
-    _completeAll.checked = (completedLength == tasks.length);
+    var completedLength = _tasks.completed.length;
+    var leftLength = _tasks.left.length;
+    _completeAll.checked = (completedLength == _tasks.length);
     _leftCount.innerHtml =
         '<b>${leftLength}</b> todo${leftLength != 1 ? 's' : ''} left';
     if (completedLength == 0) {
       _clearCompleted.style.display = 'none';
     } else {
       _clearCompleted.style.display = 'block';
-      _clearCompleted.text = 'Clear completed (${tasks.completed.length})';
+      _clearCompleted.text = 'Clear completed (${_tasks.completed.length})';
     }
   }
 

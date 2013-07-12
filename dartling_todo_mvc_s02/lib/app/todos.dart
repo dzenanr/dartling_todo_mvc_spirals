@@ -1,22 +1,23 @@
 part of todo_mvc_app;
 
 class Todos {
-  TodoApp _todoApp;
+  DomainSession _session;
+
   List<Todo> _todoList = new List<Todo>();
   Element _todoElements = query('#todo-list');
 
-  Todos(this._todoApp);
+  Todos(this._session);
 
   Todo _find(Task task) {
     for (Todo todo in _todoList) {
-      if (todo._task == task) {
+      if (todo.task == task) {
         return todo;
       }
     }
   }
 
   add(Task task) {
-    var todo = new Todo(_todoApp, task);
+    var todo = new Todo(_session, task);
     _todoList.add(todo);
     _todoElements.nodes.add(todo.element);
   }

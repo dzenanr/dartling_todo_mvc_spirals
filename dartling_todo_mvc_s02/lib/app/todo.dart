@@ -1,30 +1,24 @@
 part of todo_mvc_app;
 
 class Todo {
-  DomainSession _session;
-  Task _task;
+  Task task;
 
   Element element;
   InputElement _completed;
 
-  Todo(TodoApp todoApp, this._task) {
-    _session = todoApp.session;
-    _create();
-  }
-
-  _create() {
+  Todo(DomainSession session, this.task) {
     element = new Element.html('''
-      <li ${_task.completed ? 'class="completed"' : ''}>
+        <li ${task.completed ? 'class="completed"' : ''}>
         <input class='completed' type='checkbox'
-          ${_task.completed ? 'checked' : ''}>
-        <label id='title'>${_task.title}</label>
+          ${task.completed ? 'checked' : ''}>
+        <label id='title'>${task.title}</label>
       </li>
     ''');
 
     _completed = element.query('.completed');
     _completed.onClick.listen((MouseEvent e) {
-      new SetAttributeAction(_session, _task, 'completed',
-          !_task.completed).doit();
+      new SetAttributeAction(session, task, 'completed',
+          !task.completed).doit();
     });
   }
 

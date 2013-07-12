@@ -3,22 +3,13 @@ part of todo_mvc_app;
 class Todo {
   Task task;
 
-  Tasks _tasks;
-  DomainSession _session;
-
   Element element;
   InputElement _completed;
   Element _title;
 
-  Todo(TodoApp todoApp, this.task) {
-    _session = todoApp.session;
-    _tasks = todoApp.tasks;
-    _create();
-  }
-
-  _create() {
+  Todo(DomainSession session, Tasks tasks, this.task) {
     element = new Element.html('''
-      <li ${task.completed ? 'class="completed"' : ''}>
+        <li ${task.completed ? 'class="completed"' : ''}>
         <div class='view'>
           <input class='completed' type='checkbox'
             ${task.completed ? 'checked' : ''}>
@@ -31,7 +22,7 @@ class Todo {
 
     _completed = element.query('.completed');
     _completed.onClick.listen((MouseEvent e) {
-      new SetAttributeAction(_session, task, 'completed',
+      new SetAttributeAction(session, task, 'completed',
           !task.completed).doit();
     });
 
@@ -47,13 +38,13 @@ class Todo {
       if (e.keyCode == KeyCode.ENTER) {
         var value = edit.value.trim();
         if (value != '') {
-          new SetAttributeAction(_session, task, 'title', value).doit();
+          new SetAttributeAction(session, task, 'title', value).doit();
         }
       }
     });
 
     element.query('.remove').onClick.listen((MouseEvent e) {
-      var action = new RemoveAction(_session, _tasks, task).doit();
+      var action = new RemoveAction(session, tasks, task).doit();
     });
   }
 

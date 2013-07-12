@@ -1,14 +1,16 @@
 part of todo_mvc_app;
 
 class Todos {
-  TodoApp _todoApp;
+  DomainSession _session;
+  Tasks _tasks;
+
   List<Todo> _todoList = new List<Todo>();
   Element _todoElements = query('#todo-list');
   Element _allElements = query('#filter a[href="#/"]');
   Element _leftElements = query('#filter a[href="#/left"]');
   Element _completedElements = query('#filter a[href="#/completed"]');
 
-  Todos(this._todoApp) {
+  Todos(this._session, this._tasks) {
     window.onHashChange.listen((e) => updateFilter());
   }
 
@@ -21,7 +23,7 @@ class Todos {
   }
 
   add(Task task) {
-    var todo = new Todo(_todoApp, task);
+    var todo = new Todo(_session, _tasks, task);
     _todoList.add(todo);
     _todoElements.nodes.add(todo.element);
   }

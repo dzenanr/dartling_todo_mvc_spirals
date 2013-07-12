@@ -131,12 +131,19 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       expect(generateTasks.length, equals(--generatelength));
       expect(tasks.length, equals(--length));
     });
-    test('Order Tasks by Title', () {
+    test('Sort Tasks by Title', () {
       var length = tasks.length;
-      tasks.order((a,b) => a.title.compareTo(b.title));
+      tasks.sort((a,b) => a.title.compareTo(b.title));
       expect(tasks.isEmpty, isFalse);
       expect(tasks.length, equals(length));
-      tasks.display(title:'Order Tasks by Title');
+      tasks.display(title:'Sort Tasks by Title');
+    });
+    test('Order Tasks by Title', () {
+      var length = tasks.length;
+      var sortedTasks = tasks.order((a,b) => a.title.compareTo(b.title));
+      expect(sortedTasks.isEmpty, isFalse);
+      expect(sortedTasks.length, equals(length));
+      sortedTasks.display(title:'Order Tasks by Title');
     });
 
     test('Find Task then Set Oid with Failure', () {
