@@ -4,15 +4,16 @@ class Todo {
   DomainSession _session;
   Task _task;
 
-  Element _todo;
+  Element element;
   InputElement _completed;
 
   Todo(TodoApp todoApp, this._task) {
     _session = todoApp.session;
+    _create();
   }
 
-  Element create() {
-    _todo = new Element.html('''
+  _create() {
+    element = new Element.html('''
       <li ${_task.completed ? 'class="completed"' : ''}>
         <input class='completed' type='checkbox'
           ${_task.completed ? 'checked' : ''}>
@@ -20,21 +21,19 @@ class Todo {
       </li>
     ''');
 
-    _completed = _todo.query('.completed');
+    _completed = element.query('.completed');
     _completed.onClick.listen((MouseEvent e) {
       new SetAttributeAction(_session, _task, 'completed',
           !_task.completed).doit();
     });
-
-    return _todo;
   }
 
   complete(bool completed) {
     _completed.checked = completed;
     if (completed) {
-      _todo.classes.add('completed');
+      element.classes.add('completed');
     } else {
-      _todo.classes.remove('completed');
+      element.classes.remove('completed');
     }
   }
 }

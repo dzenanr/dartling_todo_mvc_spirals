@@ -6,17 +6,18 @@ class Todo {
   Tasks _tasks;
   DomainSession _session;
 
-  Element _todo;
+  Element element;
   InputElement _completed;
   Element _title;
 
   Todo(TodoApp todoApp, this.task) {
     _session = todoApp.session;
     _tasks = todoApp.tasks;
+    _create();
   }
 
-  Element create() {
-    _todo = new Element.html('''
+  _create() {
+    element = new Element.html('''
       <li ${task.completed ? 'class="completed"' : ''}>
         <div class='view'>
           <input class='completed' type='checkbox'
@@ -28,17 +29,17 @@ class Todo {
       </li>
     ''');
 
-    _completed = _todo.query('.completed');
+    _completed = element.query('.completed');
     _completed.onClick.listen((MouseEvent e) {
       new SetAttributeAction(_session, task, 'completed',
           !task.completed).doit();
     });
 
-    _title = _todo.query('#title');
-    InputElement edit = _todo.query('.edit');
+    _title = element.query('#title');
+    InputElement edit = element.query('.edit');
 
     _title.onDoubleClick.listen((MouseEvent e) {
-      _todo.classes.add('editing');
+      element.classes.add('editing');
       edit.select();
     });
 
@@ -51,32 +52,30 @@ class Todo {
       }
     });
 
-    _todo.query('.remove').onClick.listen((MouseEvent e) {
+    element.query('.remove').onClick.listen((MouseEvent e) {
       var action = new RemoveAction(_session, _tasks, task).doit();
     });
-
-    return _todo;
   }
 
   complete(bool completed) {
     _completed.checked = completed;
     if (completed) {
-      _todo.classes.add('completed');
+      element.classes.add('completed');
     } else {
-      _todo.classes.remove('completed');
+      element.classes.remove('completed');
     }
   }
 
   retitle(String title) {
     _title.text = title;
-    _todo.classes.remove('editing');
+    element.classes.remove('editing');
   }
 
   remove() {
-    _todo.remove();
+    element.remove();
   }
 
   set visible(bool visible) {
-    _todo.style.display = visible ? 'block' : 'none';
+    element.style.display = visible ? 'block' : 'none';
   }
 }

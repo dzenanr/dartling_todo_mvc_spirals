@@ -1,16 +1,13 @@
 part of todo_mvc_app;
 
 class Todo {
-  Task _task;
+  Element element;
 
-  Todo(this._task);
-
-  Element create() {
-    var _todo = new Element.html('''
-      <li>      
-        <label id='title'>${_task.title}</label>
+  Todo(Task task) {
+    element = new Element.html('''
+        <li>      
+        <label id='title'>${task.title}</label>
       </li>
     ''');
-    return _todo;
   }
 }

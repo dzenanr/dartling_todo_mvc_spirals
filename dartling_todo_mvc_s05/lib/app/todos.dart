@@ -23,7 +23,7 @@ class Todos {
   add(Task task) {
     var todo = new Todo(_todoApp, task);
     _todoList.add(todo);
-    _todoElements.nodes.add(todo.create());
+    _todoElements.nodes.add(todo.element);
   }
 
   complete(Task task) {

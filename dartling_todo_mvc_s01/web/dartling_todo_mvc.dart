@@ -4,8 +4,9 @@ import 'package:dartling_todo_mvc/dartling_todo_mvc_app.dart';
 
 main() {
   var repo = new TodoRepo();
-  TodoModels domain = repo.getDomainModels(TodoRepo.todoDomainCode);
-  new TodoApp(domain);
+  var domain = repo.getDomainModels('Todo');
+  var model = domain.getModelEntries('Mvc');
+  new TodoApp(model.tasks);
 }
 
 

@@ -1,10 +1,7 @@
 part of todo_mvc_app;
 
 class TodoApp {
-  TodoApp(TodoModels domain) {
-    MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
-    Tasks tasks = model.getEntry('Task');
-
+  TodoApp(Tasks tasks) {
     var _todos = new Todos();
 
     InputElement newTodo = query('#new-todo');
