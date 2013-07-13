@@ -62,7 +62,7 @@ class Todos implements ActionReactionApi {
       _remove(action.entity);
     }
 
-    _todoApp.updateFooter();
+    _todoApp.updateDisplay();
     _todoApp.save();
   }
 }

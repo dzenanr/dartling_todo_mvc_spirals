@@ -29,7 +29,7 @@ class TodoApp implements PastReactionApi {
       for (Task task in tasks) {
         _todos.add(task);
       }
-      updateFooter();
+      updateDisplay();
     }
 
     _undo.style.display = 'none';
@@ -91,7 +91,7 @@ class TodoApp implements PastReactionApi {
     tasks.errors.clear();
   }
 
-  updateFooter() {
+  updateDisplay() {
     var display = tasks.length == 0 ? 'none' : 'block';
     _completeAll.style.display = display;
     _main.style.display = display;

@@ -5,6 +5,8 @@ To Do
   (something with css?)
 - make title the id (?)
 - add tests for id (?)
+- make specific fromJsonWithinSession with AddAction
+- make Footer class
 
 dartling
 

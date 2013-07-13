@@ -25,7 +25,7 @@ class TodoApp {
       for (Task task in tasks) {
         _todos.add(task);
       }
-      updateFooter();
+      updateDisplay();
     }
 
     InputElement newTodo = query('#new-todo');
@@ -71,7 +71,7 @@ class TodoApp {
     window.localStorage['todos'] = stringify(tasks.toJson());
   }
 
-  updateFooter() {
+  updateDisplay() {
     var display = tasks.length == 0 ? 'none' : 'block';
     _completeAll.style.display = display;
     _main.style.display = display;
