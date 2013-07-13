@@ -5,7 +5,7 @@ class Todo {
 
   Todo(Task task) {
     element = new Element.html('''
-        <li>      
+      <li>      
         <label id='title'>${task.title}</label>
       </li>
     ''');

@@ -12,7 +12,7 @@ class TodoApp implements ActionReactionApi {
     DomainSession session = domain.newSession();
     domain.startActionReaction(this);
     MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
-    _tasks = model.getEntry('Task');
+    _tasks = model.tasks;
 
     _todos = new Todos(session);
     //load todos

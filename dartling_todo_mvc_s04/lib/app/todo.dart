@@ -7,7 +7,9 @@ class Todo {
   InputElement _completed;
   Element _title;
 
-  Todo(DomainSession session, Tasks tasks, this.task) {
+  Todo(TodoApp todoApp, this.task) {
+    DomainSession session = todoApp.session;
+    Tasks tasks = todoApp.tasks;
     element = new Element.html('''
         <li ${task.completed ? 'class="completed"' : ''}>
         <div class='view'>
