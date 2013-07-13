@@ -11,6 +11,7 @@ class Todos implements ActionReactionApi {
 
   Todos(this._todoApp) {
     window.onHashChange.listen((e) => updateFilter());
+    _todoApp.domain.startActionReaction(this);
   }
 
   add(Task task) {

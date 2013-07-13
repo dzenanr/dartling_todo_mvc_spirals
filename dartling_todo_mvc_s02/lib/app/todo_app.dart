@@ -1,6 +1,8 @@
 part of todo_mvc_app;
 
-class TodoApp implements ActionReactionApi {
+class TodoApp {
+  TodoModels domain;
+  DomainSession session;
   Tasks _tasks;
 
   Todos _todos;
@@ -8,13 +10,12 @@ class TodoApp implements ActionReactionApi {
   Element _footer = query('#footer');
   Element _leftCount = query('#left-count');
 
-  TodoApp(TodoModels domain) {
-    DomainSession session = domain.newSession();
-    domain.startActionReaction(this);
+  TodoApp(this.domain) {
+    session = domain.newSession();
     MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
     _tasks = model.tasks;
 
-    _todos = new Todos(session);
+    _todos = new Todos(this);
     //load todos
     String json = window.localStorage['todos'];
     if (json != null) {
@@ -22,7 +23,7 @@ class TodoApp implements ActionReactionApi {
       for (Task task in _tasks) {
         _todos.add(task);
       }
-      _updateFooter();
+      updateFooter();
     }
 
     InputElement newTodo = query('#new-todo');
@@ -39,11 +40,11 @@ class TodoApp implements ActionReactionApi {
     });
   }
 
-  _save() {
+  save() {
     window.localStorage['todos'] = stringify(_tasks.toJson());
   }
 
-  _updateFooter() {
+  updateFooter() {
     var display = _tasks.length == 0 ? 'none' : 'block';
     _main.style.display = display;
     _footer.style.display = display;
@@ -52,16 +53,6 @@ class TodoApp implements ActionReactionApi {
     var leftLength = _tasks.left.length;
     _leftCount.innerHtml =
         '<b>${leftLength}</b> todo${leftLength != 1 ? 's' : ''} left';
-  }
-
-  react(ActionApi action) {
-    if (action is AddAction) {
-      _todos.add(action.entity);
-    } else if (action is SetAttributeAction) {
-      _todos.complete(action.entity);
-    }
-    _updateFooter();
-    _save();
   }
 }
 

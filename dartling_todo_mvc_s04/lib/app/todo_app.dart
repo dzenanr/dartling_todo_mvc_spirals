@@ -1,6 +1,7 @@
 part of todo_mvc_app;
 
 class TodoApp implements PastReactionApi {
+  TodoModels domain;
   DomainSession session;
   Tasks tasks;
 
@@ -13,14 +14,13 @@ class TodoApp implements PastReactionApi {
   Element _leftCount = query('#left-count');
   Element _clearCompleted = query('#clear-completed');
 
-  TodoApp(TodoModels domain) {
+  TodoApp(this.domain) {
     session = domain.newSession();
     session.past.startPastReaction(this);
     MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
     tasks = model.tasks;
 
     _todos = new Todos(this);
-    domain.startActionReaction(_todos);
     //load todos
     String json = window.localStorage['todos'];
     if (json != null) {

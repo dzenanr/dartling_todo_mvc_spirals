@@ -6,7 +6,9 @@ class Todos implements ActionReactionApi {
   List<Todo> _todoList = new List<Todo>();
   Element _todoElements = query('#todo-list');
 
-  Todos(this._todoApp);
+  Todos(this._todoApp) {
+    _todoApp.domain.startActionReaction(this);
+  }
 
   add(Task task) {
     var todo = new Todo(_todoApp, task);

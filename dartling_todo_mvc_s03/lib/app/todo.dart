@@ -6,7 +6,9 @@ class Todo {
   Element element;
   InputElement _completed;
 
-  Todo(DomainSession session, Tasks tasks, this.task) {
+  Todo(TodoApp todoApp, this.task) {
+    DomainSession session = todoApp.session;
+    Tasks tasks = todoApp.tasks;
     element = new Element.html('''
         <li ${task.completed ? 'class="completed"' : ''}>
         <input class='completed' type='checkbox'
