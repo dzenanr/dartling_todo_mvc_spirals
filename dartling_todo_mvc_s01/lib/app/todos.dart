@@ -4,7 +4,12 @@ class Todos {
   Element _todoList = query('#todo-list');
 
   add(Task task) {
-    _todoList.nodes.add(new Todo(task).element);
+    var element = new Element.html('''
+        <li>      
+        <label id='title'>${task.title}</label>
+      </li>
+    ''');
+    _todoList.nodes.add(element);
   }
 }
 

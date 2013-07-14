@@ -1,0 +1,8 @@
+To Do
+
+- test model
+
+- load todos from the local storage
+- complete an existing todo
+- save todos to the local storage
+- show how many todos are left to do
