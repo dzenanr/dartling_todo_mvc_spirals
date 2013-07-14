@@ -1,0 +1,8 @@
+Project Gen Path
+used in code generation in dartling_gen
+
+Linux
+--genall /home/dr/git/dartling/dartling_todo_mvc_spirals/dartling_todo_mvc_s01 todo mvc
+
+Windows
+--genall C:/Users/ridjanod/git/dart/dartling_todo_mvc_spirals/dartling_todo_mvc_s01 todo mvc

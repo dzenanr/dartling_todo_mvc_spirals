@@ -5,14 +5,12 @@ class Todos implements ActionReactionApi {
 
   List<Todo> _todoList = new List<Todo>();
   Element _todoElements = query('#todo-list');
-  Element _allElements = query('#filter a[href="#/"]');
-  Element _leftElements = query('#filter a[href="#/left"]');
-  Element _completedElements = query('#filter a[href="#/completed"]');
 
   Todos(this._todoApp) {
-    window.onHashChange.listen((e) => _updateFilter());
     _todoApp.domain.startActionReaction(this);
   }
+
+  Iterator<Todo> get iterator => _todoList.iterator;
 
   add(Task task) {
     var todo = new Todo(_todoApp, task);
@@ -48,48 +46,6 @@ class Todos implements ActionReactionApi {
       _todoList.remove(todo);
       todo.remove();
     }
-  }
-
-  _updateFilter() {
-    switch(window.location.hash) {
-      case '#/left':
-        _showLeft();
-        break;
-      case '#/completed':
-        _showCompleted();
-        break;
-      default:
-        _showAll();
-        break;
-    }
-  }
-
-  _showAll() {
-    _setSelectedFilter(_allElements);
-    for (Todo todo in _todoList) {
-      todo.visible = true;
-    }
-  }
-
-  _showLeft() {
-    _setSelectedFilter(_leftElements);
-    for (Todo todo in _todoList) {
-      todo.visible = todo.task.left;
-    }
-  }
-
-  _showCompleted() {
-    _setSelectedFilter(_completedElements);
-    for (Todo todo in _todoList) {
-      todo.visible = todo.task.completed;
-    }
-  }
-
-  _setSelectedFilter(Element e) {
-    _allElements.classes.remove('selected');
-    _leftElements.classes.remove('selected');
-    _completedElements.classes.remove('selected');
-    e.classes.add('selected');
   }
 
   react(ActionApi action) {

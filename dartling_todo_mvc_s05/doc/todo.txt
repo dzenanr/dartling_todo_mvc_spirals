@@ -1,19 +1,4 @@
 To Do
 
-- when a toodo is longer than close to 60 characters,
-  the complete all does not work on that lengthy todo!?
-  (something with css?)
-- make title the id (?)
-- add tests for id (?)
-- make specific fromJsonWithinSession with AddAction
-- make Footer class
-
-dartling
-
-- replace preAdd with validation for title length in setTitle of Task:
-* SetAttributeAction does not call the specific set method.
-  Thus, even if you write a validation in the specific method,
-  it will not be used by Dartling. In future, the reflection will
-  solve this problem.
-* when SetAttributeAction with length validation for title added to Task,
-  there was 'Null is not subtype of bool' errorr!?
+- Header class
+- Footer class
