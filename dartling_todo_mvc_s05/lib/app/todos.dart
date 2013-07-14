@@ -12,6 +12,22 @@ class Todos implements ActionReactionApi {
   Todos(this._todoApp) {
     window.onHashChange.listen((e) => _updateFilter());
     _todoApp.domain.startActionReaction(this);
+    DomainSession session = _todoApp.session;
+    Tasks tasks = _todoApp.tasks;
+
+    InputElement newTodo = query('#new-todo');
+    newTodo.onKeyPress.listen((KeyboardEvent e) {
+      if (e.keyCode == KeyCode.ENTER) {
+        var title = newTodo.value.trim();
+        if (title != '') {
+          var task = new Task(tasks.concept);
+          task.title = title;
+          newTodo.value = '';
+          new AddAction(session, tasks, task).doit();
+          _todoApp.possibleErrors();
+        }
+      }
+    });
   }
 
   add(Task task) {

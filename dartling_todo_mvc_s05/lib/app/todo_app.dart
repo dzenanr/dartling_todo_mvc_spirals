@@ -42,20 +42,6 @@ class TodoApp implements PastReactionApi {
       session.past.redo();
     });
 
-    InputElement newTodo = query('#new-todo');
-    newTodo.onKeyPress.listen((KeyboardEvent e) {
-      if (e.keyCode == KeyCode.ENTER) {
-        var title = newTodo.value.trim();
-        if (title != '') {
-          var task = new Task(tasks.concept);
-          task.title = title;
-          newTodo.value = '';
-          new AddAction(session, tasks, task).doit();
-          _possibleErrors();
-        }
-      }
-    });
-
     _completeAll.onClick.listen((Event e) {
       var transaction = new Transaction('complete-all', session);
       if (tasks.left.length == 0) {
@@ -86,7 +72,7 @@ class TodoApp implements PastReactionApi {
     window.localStorage['todos'] = stringify(tasks.toJson());
   }
 
-  _possibleErrors() {
+  possibleErrors() {
     _errors.innerHtml = '<p>${tasks.errors.toString()}</p>';
     tasks.errors.clear();
   }
@@ -110,7 +96,7 @@ class TodoApp implements PastReactionApi {
       _clearCompleted.text = 'Clear completed (${tasks.completed.length})';
     }
 
-    _possibleErrors();
+    possibleErrors();
   }
 
   reactCannotUndo() {

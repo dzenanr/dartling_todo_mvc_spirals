@@ -9,7 +9,7 @@ class TodoApp {
   Element _main = query('#main');
   Todos _todos;
   Element _errors = query('#errors');
-  Footer _footer;
+  Footer footer;
 
   TodoApp(this.domain) {
     session = domain.newSession();
@@ -18,21 +18,7 @@ class TodoApp {
 
     _header = new Header(this);
     _todos = new Todos(this);
-    _footer = new Footer(this, _todos);
-
-    InputElement newTodo = query('#new-todo');
-    newTodo.onKeyPress.listen((KeyboardEvent e) {
-      if (e.keyCode == KeyCode.ENTER) {
-        var title = newTodo.value.trim();
-        if (title != '') {
-          var task = new Task(tasks.concept);
-          task.title = title;
-          newTodo.value = '';
-          new AddAction(session, tasks, task).doit();
-          _possibleErrors();
-        }
-      }
-    });
+    footer = new Footer(this, _todos);
 
     _load();
   }
@@ -52,7 +38,7 @@ class TodoApp {
     window.localStorage['todos'] = stringify(tasks.toJson());
   }
 
-  _possibleErrors() {
+  possibleErrors() {
     _errors.innerHtml = '<p>${tasks.errors.toString()}</p>';
     tasks.errors.clear();
   }
@@ -61,8 +47,8 @@ class TodoApp {
     var display = tasks.length == 0 ? 'none' : 'block';
     _main.style.display = display;
     _header.updateDisplay();
-    _footer.updateDisplay();
-    _possibleErrors();
+    footer.updateDisplay();
+    possibleErrors();
   }
 }
 

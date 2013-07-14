@@ -15,7 +15,7 @@ class Footer {
     _tasks = todoApp.tasks;
     DomainSession session = todoApp.session;
 
-    window.onHashChange.listen((e) => _updateFilter());
+    window.onHashChange.listen((e) => updateFilter());
 
     _clearCompleted.onClick.listen((MouseEvent e) {
       var transaction = new Transaction('clear-completed', session);
@@ -27,7 +27,7 @@ class Footer {
     });
   }
 
-  _updateFilter() {
+  updateFilter() {
     switch(window.location.hash) {
       case '#/left':
         _showLeft();
