@@ -42,7 +42,6 @@ class Header implements PastReactionApi {
   updateDisplay() {
     var display = _tasks.length == 0 ? 'none' : 'block';
     _completeAll.style.display = display;
-
     var completedLength = _tasks.completed.length;
     _completeAll.checked = (completedLength == _tasks.length);
   }
