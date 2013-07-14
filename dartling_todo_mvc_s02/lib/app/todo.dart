@@ -9,7 +9,7 @@ class Todo {
   Todo(TodoApp todoApp, this.task) {
     DomainSession session = todoApp.session;
     element = new Element.html('''
-        <li ${task.completed ? 'class="completed"' : ''}>
+      <li ${task.completed ? 'class="completed"' : ''}>
         <input class='completed' type='checkbox'
           ${task.completed ? 'checked' : ''}>
         <label id='title'>${task.title}</label>
