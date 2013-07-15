@@ -2,7 +2,7 @@ part of todo_mvc_app;
 
 class TodoApp {
   TodoApp(Tasks tasks) {
-    var _todos = new Todos();
+    var todos = new Todos();
 
     InputElement newTodo = query('#new-todo');
     newTodo.onKeyPress.listen((KeyboardEvent e) {
@@ -12,7 +12,7 @@ class TodoApp {
           var task = new Task(tasks.concept);
           task.title = title;
           tasks.add(task);
-          _todos.add(task);
+          todos.add(task);
           newTodo.value = '';
         }
       }
