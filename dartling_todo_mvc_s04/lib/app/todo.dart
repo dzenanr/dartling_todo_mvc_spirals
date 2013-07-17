@@ -46,7 +46,7 @@ class Todo {
     });
 
     element.query('.remove').onClick.listen((MouseEvent e) {
-      var action = new RemoveAction(session, tasks, task).doit();
+      new RemoveAction(session, tasks, task).doit();
     });
   }
 
