@@ -33,9 +33,9 @@ class Todos implements ActionReactionApi {
 
   react(ActionApi action) {
     if (action is AddAction) {
-      add(action.entity);
+      add((action as AddAction).entity);
     } else if (action is SetAttributeAction) {
-      _complete(action.entity);
+      _complete((action as SetAttributeAction).entity);
     }
     _todoApp.updateFooter();
     _todoApp.save();
