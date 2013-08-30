@@ -47,7 +47,7 @@ class Todos implements ActionReactionApi {
     }
 
     if (action is Transaction) {
-      for (var transactionAction in action.past.actions) {
+      for (var transactionAction in (action as Transaction).past.actions) {
         if (transactionAction is SetAttributeAction) {
           updateTodo(transactionAction);
         } else if (transactionAction is RemoveAction) {
@@ -55,11 +55,11 @@ class Todos implements ActionReactionApi {
         }
       }
     } else if (action is AddAction) {
-      add(action.entity);
+      add((action as AddAction).entity);
     } else if (action is SetAttributeAction) {
       updateTodo(action);
     } else if (action is RemoveAction) {
-      _remove(action.entity);
+      _remove((action as RemoveAction).entity);
     }
 
     _todoApp.updateDisplay();
