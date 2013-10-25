@@ -4,14 +4,14 @@ class Todos implements ActionReactionApi {
   TodoApp _todoApp;
 
   List<Todo> _todoList = new List<Todo>();
-  Element _todoElements = query('#todo-list');
+  Element _todoElements = querySelector('#todo-list');
 
   Todos(this._todoApp) {
     _todoApp.domain.startActionReaction(this);
     DomainSession session = _todoApp.session;
     Tasks tasks = _todoApp.tasks;
 
-    InputElement newTodo = query('#new-todo');
+    InputElement newTodo = querySelector('#new-todo');
     newTodo.onKeyPress.listen((KeyboardEvent e) {
       if (e.keyCode == KeyCode.ENTER) {
         var title = newTodo.value.trim();

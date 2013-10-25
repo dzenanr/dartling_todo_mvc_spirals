@@ -4,10 +4,10 @@ class Todos implements ActionReactionApi {
   TodoApp _todoApp;
 
   List<Todo> _todoList = new List<Todo>();
-  Element _todoElements = query('#todo-list');
-  Element _allElements = query('#filter a[href="#/"]');
-  Element _leftElements = query('#filter a[href="#/left"]');
-  Element _completedElements = query('#filter a[href="#/completed"]');
+  Element _todoElements = querySelector('#todo-list');
+  Element _allElements = querySelector('#filter a[href="#/"]');
+  Element _leftElements = querySelector('#filter a[href="#/left"]');
+  Element _completedElements = querySelector('#filter a[href="#/completed"]');
 
   Todos(this._todoApp) {
     window.onHashChange.listen((e) => _updateFilter());
@@ -15,7 +15,7 @@ class Todos implements ActionReactionApi {
     DomainSession session = _todoApp.session;
     Tasks tasks = _todoApp.tasks;
 
-    InputElement newTodo = query('#new-todo');
+    InputElement newTodo = querySelector('#new-todo');
     newTodo.onKeyPress.listen((KeyboardEvent e) {
       if (e.keyCode == KeyCode.ENTER) {
         var title = newTodo.value.trim();

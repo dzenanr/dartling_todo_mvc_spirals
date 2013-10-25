@@ -18,13 +18,13 @@ class Todo {
       </li>
     ''');
 
-    _completed = element.query('.completed');
+    _completed = element.querySelector('.completed');
     _completed.onClick.listen((MouseEvent e) {
       new SetAttributeAction(session, task, 'completed',
           !task.completed).doit();
     });
 
-    element.query('.remove').onClick.listen((MouseEvent e) {
+    element.querySelector('.remove').onClick.listen((MouseEvent e) {
       new RemoveAction(session, tasks, task).doit();
     });
   }

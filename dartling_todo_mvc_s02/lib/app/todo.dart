@@ -16,7 +16,7 @@ class Todo {
       </li>
     ''');
 
-    _completed = element.query('.completed');
+    _completed = element.querySelector('.completed');
     _completed.onClick.listen((MouseEvent e) {
       new SetAttributeAction(session, task, 'completed',
           !task.completed).doit();

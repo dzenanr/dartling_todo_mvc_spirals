@@ -3,9 +3,9 @@ part of todo_mvc_app;
 class Header implements PastReactionApi {
   Tasks _tasks;
 
-  InputElement _completeAll = query('#complete-all');
-  Element _undo = query('#undo');
-  Element _redo = query('#redo');
+  InputElement _completeAll = querySelector('#complete-all');
+  Element _undo = querySelector('#undo');
+  Element _redo = querySelector('#redo');
 
   Header(TodoApp todoApp) {
     DomainSession session = todoApp.session;

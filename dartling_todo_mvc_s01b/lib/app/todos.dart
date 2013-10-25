@@ -1,10 +1,10 @@
 part of todo_mvc_app;
 
 class Todos {
-  Element _todoList = query('#todo-list');
+  Element _todoList = querySelector('#todo-list');
 
   Todos(Tasks tasks) {
-    InputElement newTodo = query('#new-todo');
+    InputElement newTodo = querySelector('#new-todo');
     newTodo.onKeyPress.listen((KeyboardEvent e) {
       if (e.keyCode == KeyCode.ENTER) {
         var title = newTodo.value.trim();

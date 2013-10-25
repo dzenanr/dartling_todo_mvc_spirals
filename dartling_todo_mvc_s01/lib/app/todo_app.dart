@@ -4,7 +4,7 @@ class TodoApp {
   TodoApp(Tasks tasks) {
     var todos = new Todos();
 
-    InputElement newTodo = query('#new-todo');
+    InputElement newTodo = querySelector('#new-todo');
     newTodo.onKeyPress.listen((KeyboardEvent e) {
       if (e.keyCode == KeyCode.ENTER) {
         var title = newTodo.value.trim();

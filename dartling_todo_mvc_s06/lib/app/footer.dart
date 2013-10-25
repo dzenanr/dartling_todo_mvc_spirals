@@ -4,12 +4,12 @@ class Footer {
   Tasks _tasks;
 
   Todos _todos;
-  Element _footer = query('#footer');
-  Element _leftCount = query('#left-count');
-  Element _allElements = query('#filter a[href="#/"]');
-  Element _leftElements = query('#filter a[href="#/left"]');
-  Element _completedElements = query('#filter a[href="#/completed"]');
-  Element _clearCompleted = query('#clear-completed');
+  Element _footer = querySelector('#footer');
+  Element _leftCount = querySelector('#left-count');
+  Element _allElements = querySelector('#filter a[href="#/"]');
+  Element _leftElements = querySelector('#filter a[href="#/left"]');
+  Element _completedElements = querySelector('#filter a[href="#/completed"]');
+  Element _clearCompleted = querySelector('#clear-completed');
 
   Footer(TodoApp todoApp, this._todos) {
     _tasks = todoApp.tasks;

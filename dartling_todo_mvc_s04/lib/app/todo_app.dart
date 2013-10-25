@@ -6,13 +6,13 @@ class TodoApp implements PastReactionApi {
   Tasks tasks;
 
   Todos _todos;
-  Element _undo = query('#undo');
-  Element _redo = query('#redo');
-  Element _main = query('#main');
-  InputElement _completeAll = query('#complete-all');
-  Element _footer = query('#footer');
-  Element _leftCount = query('#left-count');
-  Element _clearCompleted = query('#clear-completed');
+  Element _undo = querySelector('#undo');
+  Element _redo = querySelector('#redo');
+  Element _main = querySelector('#main');
+  InputElement _completeAll = querySelector('#complete-all');
+  Element _footer = querySelector('#footer');
+  Element _leftCount = querySelector('#left-count');
+  Element _clearCompleted = querySelector('#clear-completed');
 
   TodoApp(this.domain) {
     session = domain.newSession();
@@ -41,7 +41,7 @@ class TodoApp implements PastReactionApi {
       session.past.redo();
     });
 
-    InputElement newTodo = query('#new-todo');
+    InputElement newTodo = querySelector('#new-todo');
     newTodo.onKeyPress.listen((KeyboardEvent e) {
       if (e.keyCode == KeyCode.ENTER) {
         var title = newTodo.value.trim();

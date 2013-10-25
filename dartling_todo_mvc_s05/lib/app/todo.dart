@@ -22,14 +22,14 @@ class Todo {
       </li>
     ''');
 
-    _completed = element.query('.completed');
+    _completed = element.querySelector('.completed');
     _completed.onClick.listen((MouseEvent e) {
       new SetAttributeAction(session, task, 'completed',
           !task.completed).doit();
     });
 
-    _title = element.query('#title');
-    InputElement edit = element.query('.edit');
+    _title = element.querySelector('#title');
+    InputElement edit = element.querySelector('.edit');
 
     _title.onDoubleClick.listen((MouseEvent e) {
       element.classes.add('editing');
@@ -45,7 +45,7 @@ class Todo {
       }
     });
 
-    element.query('.remove').onClick.listen((MouseEvent e) {
+    element.querySelector('.remove').onClick.listen((MouseEvent e) {
       new RemoveAction(session, tasks, task).doit();
     });
   }

@@ -6,9 +6,9 @@ class TodoApp {
   Tasks tasks;
 
   Header _header;
-  Element _main = query('#main');
+  Element _main = querySelector('#main');
   Todos _todos;
-  Element _errors = query('#errors');
+  Element _errors = querySelector('#errors');
   Footer footer;
 
   TodoApp(this.domain) {
