@@ -75,7 +75,7 @@ class Todos implements ActionReactionApi {
     }
 
     if (action is Transaction) {
-      for (var transactionAction in (action as Transaction).past.actions) {
+      for (var transactionAction in action.past.actions) {
         if (transactionAction is SetAttributeAction) {
           updateTodo(transactionAction);
         } else if (transactionAction is RemoveAction) {
@@ -88,15 +88,15 @@ class Todos implements ActionReactionApi {
       }
     } else if (action is AddAction) {
       if (action.undone) {
-        _remove((action as AddAction).entity);
+        _remove(action.entity);
       } else {
-        add((action as AddAction).entity);
+        add(action.entity);
       }
     } else if (action is RemoveAction) {
       if (action.undone) {
-        add((action as RemoveAction).entity);
+        add(action.entity);
       } else {
-        _remove((action as RemoveAction).entity);
+        _remove(action.entity);
       }
     } else if (action is SetAttributeAction) {
       updateTodo(action);
