@@ -36,7 +36,7 @@ library todo_mvc_app;
 
 import 'dart:html';
 
-import 'package:dartling/dartling.dart';
+//import 'package:dartling/dartling.dart';
 
 import 'package:dartling_todo_mvc/dartling_todo_mvc.dart';
 // added by hand

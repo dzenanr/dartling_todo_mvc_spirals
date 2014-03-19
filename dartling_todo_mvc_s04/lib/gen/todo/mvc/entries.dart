@@ -22,6 +22,7 @@ class MvcEntries extends ModelEntries {
     if (concept.code == "Task") {
       return new Tasks(concept);
     }
+    return null;
   }
 
   ConceptEntity newEntity(String conceptCode) {
@@ -32,6 +33,7 @@ class MvcEntries extends ModelEntries {
     if (concept.code == "Task") {
       return new Task(concept);
     }
+    return null;
   }
 
   fromJsonToData() {

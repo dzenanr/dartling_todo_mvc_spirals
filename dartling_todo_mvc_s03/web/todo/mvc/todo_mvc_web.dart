@@ -2,7 +2,7 @@
 
 import "dart:html";
 
-import "package:dartling/dartling.dart";
+//import "package:dartling/dartling.dart";
 import 'package:dartling_default_app/dartling_default_app.dart';
 
 import "package:dartling_todo_mvc/dartling_todo_mvc.dart";

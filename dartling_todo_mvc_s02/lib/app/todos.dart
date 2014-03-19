@@ -16,6 +16,7 @@ class Todos implements ActionReactionApi {
         return todo;
       }
     }
+    return null;
   }
 
   add(Task task) {
