@@ -13,7 +13,8 @@ class TodoApp {
 
   TodoApp(this.domain) {
     session = domain.newSession();
-    MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
+    MvcEntries model = 
+        domain.getModelEntries(TodoRepo.todoMvcModelCode);
     tasks = model.tasks;
 
     _header = new Header(this);
