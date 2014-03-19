@@ -19,7 +19,7 @@ class TodoApp {
     //load todos
     String json = window.localStorage['todos'];
     if (json != null) {
-      _tasks.fromJson(JSON.decode(json));
+      _tasks.fromJson(json);
       for (Task task in _tasks) {
         _todos.add(task);
       }
@@ -41,7 +41,7 @@ class TodoApp {
   }
 
   save() {
-    window.localStorage['todos'] = JSON.encode(_tasks.toJson());
+    window.localStorage['todos'] = _tasks.toJson();
   }
 
   updateFooter() {
