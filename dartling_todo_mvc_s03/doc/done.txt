@@ -3,6 +3,6 @@ Done
 + test model
 
 + remove an existing todo
-+ complete all tasks
-+ clear completed tasks
++ complete all tasks by using a transaction
++ clear completed tasks by using a transaction
 
