@@ -34,16 +34,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 library todo_mvc_app;
 
-import 'dart:convert';
 import 'dart:html';
 
 import 'package:dartling/dartling.dart';
 
 import 'package:dartling_todo_mvc/dartling_todo_mvc.dart';
-// added by hand
+
+// added after code gen - begin
+
 part 'app/todo_app.dart';
 part 'app/header.dart';
 part 'app/todos.dart';
 part 'app/todo.dart';
 part 'app/footer.dart';
 
+// added after code gen - end 
